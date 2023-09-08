@@ -1,0 +1,1 @@
+mkdir LeNet/models & mkdir LeNet/parameters & mkdir ResNet/models & mkdir ResNet/result
