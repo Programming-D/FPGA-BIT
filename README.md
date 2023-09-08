@@ -7,6 +7,7 @@
 ## Requirements
 
 * Python 3.8
+* Pytorch 1.10
 
 ## 使用方法
 将仓库克隆（或下载压缩包并解压）到本地，并进入目录
@@ -18,6 +19,10 @@ cd FPGA-BIT
 运行脚本构建需要的目录
 ```
 bash ./preprocess.sh
+```
+安装配置好anaconda，并根据yaml文件配置好环境
+```
+conda env create -f ./fpga_bit.yml
 ```
 ### 模型训练
 为了得到知识蒸馏过程中的教师模型，我们首先需要训练好一个ResNet152或者ResNet50，同时需要指定当前训练过程中用到的数据集
@@ -49,6 +54,12 @@ python train.py
 python convert.py
 cd ..
 python cifar_convert.py
+```
+### 量化后得到的模型参数与图像数据
+可以从以下百度网盘链接中获取
+```
+链接：https://pan.baidu.com/s/1hzeifQLyhP-FjzqQf65AUg?pwd=bitN 
+提取码：bitN
 ```
 ## List of contributors
 
