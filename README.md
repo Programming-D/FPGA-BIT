@@ -49,7 +49,7 @@ python distill.py --model resnet152(or resnet50) --dataset cifar(or mnist) --mod
 ```
 python train.py
 ```
-当然实际中我们用到的量化后模型参数与数据集的获取方法如下
+当然实际中我们用到的模型参数与数据集的导出方法如下
 ```
 python convert.py
 cd ..
