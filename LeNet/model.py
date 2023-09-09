@@ -40,10 +40,10 @@ class Lenet5(nn.Module):
         super(Lenet5, self).__init__()
         self.conv1 = nn.Conv2d(1, 6, kernel_size=5, stride=1, padding=0)
         self.relu = nn.ReLU()
-        self.pool1 = nn.Conv2d(6, 6, kernel_size=4, stride=2, padding=1)
+        self.pool1 = nn.AvgPool2d(kernel_size=4, stride=2, padding=1)
         
         self.conv2 = nn.Conv2d(6, 16, kernel_size=5, stride=1, padding=0)
-        self.pool2 = nn.Conv2d(16, 16, kernel_size=4, stride=2, padding=1)
+        self.pool2 = nn.AvgPool2d(kernel_size=4, stride=2, padding=1)
         
         self.conv3 = nn.Conv2d(16, 120, kernel_size=5, stride=1, padding=0)
 

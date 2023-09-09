@@ -3,6 +3,7 @@ LeNet/data/*
 LeNet/models/*
 LeNet/parameters/*
 LeNet/mnist/*
+LeNet/cifartest/*
 LeNet/cifar-10-python/*
 ResNet/test/*
 ResNet/cifar-10-python/*

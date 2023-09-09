@@ -102,58 +102,67 @@ if __name__ == '__main__':
         print(name)
 
         # 卷积层权重量化
-        if name in ["conv1.weight", "conv2.weight", "conv3.weight", "pool1.weight", "pool2.weight"]:
+        if name in ["conv1.weight", "conv2.weight", "conv3.weight"]:
             fname = name.split(".")[0]
             Tensor = model.state_dict()[name]
             s1, s2, s3, s4 = Tensor.shape
-            with open("parameters/W"+fname+".txt", "w", encoding="utf-8") as f:
+            if name == "conv2.weight":
+                fname = 'conv3'
+            elif name == "conv3.weight":
+                fname = 'conv5'
+            with open("parameters/W"+fname+".h", "w", encoding="utf-8") as f:
                 for i in range(s1):
                     for j in range(s2):
                         for k in range(s3):
                             for t in range(s4):
-                                f.write(floatto18f(Tensor[i][j][k][t])+'\n')
+                                f.write(floatto18f(Tensor[i][j][k][t])+',\n')
+                                
         # 全连接层权重量化
         if name in ["fc1.weight", "fc2.weight"]:
             fname = name.split(".")[0]
             Matrix = model.state_dict()[name].T
-            with open("parameters/W"+fname+".txt", "w", encoding="utf-8") as f:
+            with open("parameters/W"+fname+".h", "w", encoding="utf-8") as f:
                 for i in range(Matrix.shape[0]):
                     for j in range(Matrix.shape[1]):
-                        f.write(floatto18f(Matrix[i][j])+"\n")
+                        f.write(floatto18f(Matrix[i][j])+",\n")
                         
         # 池化层权重量化
         if name in ["pool1.weight", "pool2.weight"]:
             fname = name.split(".")[0]
             Tensor = model.state_dict()[name]
             s = Tensor.shape[0]
-            with open("parameters/W"+fname+".txt", "w", encoding="utf-8") as f:
+            with open("parameters/W"+fname+".h", "w", encoding="utf-8") as f:
                 for i in range(s):
                     for j in range(4):
-                        f.write(floatto18f(10*Tensor[i][j][0][0])+'\n')
+                        f.write(floatto18f(10*Tensor[i][j][0][0])+',\n')
         
         # 卷积层偏置量化
         if name in ["conv1.bias", "conv2.bias", "conv3.bias"]:
             fname = name.split(".")[0]
             Tensor = model.state_dict()[name]
             s = Tensor.shape[0]
-            with open("parameters/B"+fname+".txt", "w", encoding="utf-8") as f:
+            if name == "conv2.weight":
+                fname = 'conv3'
+            elif name == "conv3.weight":
+                fname = 'conv5'
+            with open("parameters/b"+fname+".h", "w", encoding="utf-8") as f:
                 for i in range(s):
-                    f.write(floatto18f(Tensor[i])+'\n')
+                    f.write(floatto18f(Tensor[i])+',\n')
                     
         # 全连接层偏置量化
         if name in ["fc1.bias", "fc2.bias"]:
             fname = name.split(".")[0]
             Matrix = model.state_dict()[name]
-            with open("parameters/B"+fname+".txt", "w", encoding="utf-8") as f:
+            with open("parameters/b"+fname+".h", "w", encoding="utf-8") as f:
                 for i in range(Matrix.shape[0]):
-                    f.write(floatto18f(Matrix[i])+"\n")
+                    f.write(floatto18f(Matrix[i])+",\n")
                     
         # 池化层偏置量化
         if name in ["pool1.bias", "pool2.bias"]:
             fname = name.split(".")[0]
             Tensor = model.state_dict()[name]
             s = Tensor.shape[0]
-            with open("parameters/B"+fname+".txt", "w", encoding="utf-8") as f:
+            with open("parameters/b"+fname+".h", "w", encoding="utf-8") as f:
                 for i in range(s):
-                    f.write(floatto18f(Tensor[i])+'\n')
+                    f.write(floatto18f(Tensor[i])+',\n')
                         
