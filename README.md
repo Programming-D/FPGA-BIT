@@ -58,7 +58,7 @@ python cifar_convert.py
 ### 量化后得到的模型参数与图像数据
 可以从以下百度网盘链接中获取
 ```
-链接：https://pan.baidu.com/s/1hzeifQLyhP-FjzqQf65AUg?pwd=bitN 
+链接：https://pan.baidu.com/s/1cgfByeLErKhb_pKvuOSp3A?pwd=bitN 
 提取码：bitN
 ```
 ## List of contributors
